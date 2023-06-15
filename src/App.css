@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root{
+  --primary-font: 'Lato', sans-serif;
+  --normal: 400;
+  --bold: 700;
+  --light: 300;
+}
+
+body{
+  background-image: url('./img/bgMonitor.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 6rem;
+  min-height: 999px;
+}
+
+.app{
+  margin: 0 auto;
+  font-family: var(--primary-font);
+}
+
+.todos{
+  box-shadow: 0px 1px 5px #ccc;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.todo{
+  box-shadow: 0px 1px 5px #ccc;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.create, .complete{
+  box-shadow: 0px 1px 10px #ccc;
+  color: #fff !important;
+  font-weight: bold;
+  background-color: #839456 !important;
+}
+.create:hover, .complete:hover{
+  background-color: #76854c !important;
+}
+
+.delete{
+  background-color: #945147 !important;
+  box-shadow: 0px 1px 10px #ccc;
+  color: #fff !important;
+}
+.delete:hover{
+  background-color: #945147 !important;
+}
+
+.completed{
+  opacity: .5;
+  text-decoration: line-through;
+  transition: ease-in-out .5s;
+}
+.notCompleted{
+  opacity: 1;
+  transition: ease-in-out .5s;
+}
+
+.input-group-text{
+  background-color: rgb(162, 169, 130, .7) !important;
+  color: #fff !important;
+}
+
+
+
