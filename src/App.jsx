@@ -4,6 +4,7 @@ import { useState } from "react";
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import Search from "./components/Search";
+import Confirm from "./components/Confirm";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -29,6 +30,10 @@ function App() {
 
   const [search, setSearch] = useState("");
 
+  const [modalRemove, setModalRemove] = useState(false)
+  const [removeTodoId, setRemoveTodoId] = useState(false)
+  const [newTodosToRemove, setNewTodosToRemove] = useState('')
+
   const addTodo = (text, category) => {
     const newTodos = [
       ...todos,
@@ -42,13 +47,10 @@ function App() {
     setTodos(newTodos);
   };
 
-  const removeTodo = (id) => {
-    const newTodos = [...todos];
-    const filteredTodos = newTodos.filter((todo) =>
-      todo.id !== id ? todo : null
-    );
-    setTodos(filteredTodos);
-  };
+    const removeTodo = (id) => {
+        const newTodos = [...todos];
+        setNewTodosToRemove(newTodos)
+  }
 
   const completeTodo = (id) => {
     const newTodos = [...todos];
@@ -60,7 +62,10 @@ function App() {
 
   return (
     <div className="app">
-      <div className="todos container p-5 rounded-2 shadow-lg mb-5">
+      {modalRemove ? (
+        <Confirm setModalRemove={setModalRemove} removeTodoId={removeTodoId} newTodosToRemove={newTodosToRemove} setTodos={setTodos}/>
+      ) : ('')}
+      <div className="todos container p-5 rounded-2 shadow-lg mb-5 w-75">
         <h1 className="text-center fw-bold fs-1 mb-5">Lista de Tarefas</h1>
 
         <div className="todo-form">
@@ -75,15 +80,17 @@ function App() {
           {todos
             .filter((todo) =>
               todo.text.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((todo) => (
-              <Todo
+              )
+              .map((todo) => (
+                <Todo
                 key={todo.id}
                 todos={todo}
-                removeTodo={removeTodo}
                 completeTodo={completeTodo}
-              />
-            ))}
+                removeTodo={removeTodo}
+                setModalRemove={setModalRemove}
+                setRemoveTodoId={setRemoveTodoId}
+                />
+                ))}
         </div>
       </div>
     </div>

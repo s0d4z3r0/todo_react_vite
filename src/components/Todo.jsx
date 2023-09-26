@@ -1,4 +1,11 @@
-const Todo = ({ todos, removeTodo, completeTodo }) => {
+const Todo = ({ todos, completeTodo, removeTodo, setModalRemove, setRemoveTodoId }) => {
+
+  const handleRemove = (todoId) => {
+    removeTodo(todoId)
+    setModalRemove(true)
+    setRemoveTodoId(todoId)
+  }
+
   return (
     <>
       <div
@@ -24,7 +31,7 @@ const Todo = ({ todos, removeTodo, completeTodo }) => {
           <button
             type="button"
             className="btn delete"
-            onClick={() => removeTodo(todos.id)}
+            onClick={() => handleRemove(todos.id)}
           >
             <i className="bi bi-trash"></i>
           </button>

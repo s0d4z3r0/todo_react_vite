@@ -28,30 +28,34 @@ body{
 .todo{
   box-shadow: 0px 1px 5px #ccc;
   background-color: rgba(255, 255, 255, 1);
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
 }
 
-.create, .complete{
+.create, .complete, .btn-success{
   box-shadow: 0px 1px 10px #ccc;
   color: #fff !important;
   font-weight: bold;
-  background-color: #839456 !important;
+  background-color: #679456 !important;
 }
-.create:hover, .complete:hover{
-  background-color: #76854c !important;
+.create:hover, .complete:hover, .btn-success:hover{
+  background-color: #56854c !important;
 }
 
-.delete{
-  background-color: #945147 !important;
+.delete, .btn-danger{
+  background-color: #bb3535 !important;
   box-shadow: 0px 1px 10px #ccc;
   color: #fff !important;
 }
-.delete:hover{
-  background-color: #945147 !important;
+.delete:hover, .btn-danger:hover{
+  background-color: #8a2626 !important;
 }
 
 .completed{
   opacity: .5;
   text-decoration: line-through;
+  background-color: #Ccc;
   transition: ease-in-out .5s;
 }
 .notCompleted{
@@ -60,8 +64,23 @@ body{
 }
 
 .input-group-text{
-  background-color: rgb(162, 169, 130, .7) !important;
+  background-color: rgba(103, 148, 86, 0.7) !important;
   color: #fff !important;
+}
+
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }100%{
+    opacity: 1;
+  }
+}
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+  }100%{
+    opacity: 0;
+  }
 }
 
 
