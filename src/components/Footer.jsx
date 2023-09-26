@@ -5,7 +5,7 @@ const Footer = () => {
     "
     >
       <p>
-        Criado e Desenvolvido por: {/** */}
+        Criado e Desenvolvido por: {/* */}
         <span className="text-footer">
           <a
             href="https://github.com/s0d4z3r0"

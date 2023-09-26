@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import Search from "./components/Search";
@@ -8,33 +8,18 @@ import Confirm from "./components/Confirm";
 import Footer from "./components/Footer";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "Criar funcionalidade X no sistema",
-      category: "Trabalho",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      text: "Estudar JavaScript",
-      category: "Estudo",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      text: "Ir para academia",
-      category: "Pessoal",
-      isCompleted: false,
-    },
-  ]);
+  // Criar lista de tarefas
+  const [todos, setTodos] = useState([]);
 
+  // Cria state para o search
   const [search, setSearch] = useState("");
 
+  // States para modal de remover tarefa
   const [modalRemove, setModalRemove] = useState(false)
   const [removeTodoId, setRemoveTodoId] = useState(false)
   const [newTodosToRemove, setNewTodosToRemove] = useState('')
 
+  // Função para adicionar
   const addTodo = (text, category) => {
     const newTodos = [
       ...todos,
@@ -48,11 +33,12 @@ function App() {
     setTodos(newTodos);
   };
 
-    const removeTodo = (id) => {
-        const newTodos = [...todos];
-        setNewTodosToRemove(newTodos)
+  // Função para setar a lista de tarefas existentes
+    const removeTodo = () => {
+        setNewTodosToRemove([...todos])
   }
 
+  // Função para alterar o estado da tarefa para concluído
   const completeTodo = (id) => {
     const newTodos = [...todos];
     newTodos.map((todo) =>
@@ -60,6 +46,25 @@ function App() {
     );
     setTodos(newTodos);
   };
+
+// Cria um state para verificar o width da tela
+  const [width, setWidth] = useState('')
+
+  // Função para alterar o state do Width
+  const updatePageWidth = () => {
+    setWidth(window.innerWidth)
+  }
+
+  // Effect para monitorar quando o width for alterado
+  useEffect(() => {
+    updatePageWidth()
+    window.addEventListener('resize', updatePageWidth)
+
+    return () => {
+      window.removeEventListener('resize', updatePageWidth)
+    }
+  }, [width])
+
 
   return (
     <div className="app pb-5">
@@ -70,11 +75,11 @@ function App() {
         <h1 className="text-center fw-bold fs-1 mb-5">Lista de Tarefas</h1>
 
         <div className="todo-form">
-          <TodoForm addTodo={addTodo} />
+          <TodoForm addTodo={addTodo} width={width}/>
         </div>
 
         <div className="search-form pb-4 mb-4 border-bottom border-secondary border-3 border-opacity-25">
-          <Search search={search} setSearch={setSearch} />
+          <Search search={search} setSearch={setSearch} width={width}/>
         </div>
 
         <div className="todo-list d-flex flex-column gap-2">

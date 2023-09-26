@@ -1,7 +1,8 @@
 const Todo = ({ todos, completeTodo, removeTodo, setModalRemove, setRemoveTodoId }) => {
 
+  // Função para abrir Modal e settar o item com Id selecionado
   const handleRemove = (todoId) => {
-    removeTodo(todoId)
+    removeTodo()
     setModalRemove(true)
     setRemoveTodoId(todoId)
   }
@@ -9,7 +10,7 @@ const Todo = ({ todos, completeTodo, removeTodo, setModalRemove, setRemoveTodoId
   return (
     <>
       <div
-        className={`todo d-flex justify-content-between rounded-1 px-3 ${
+        className={`todoCards d-flex justify-content-between rounded-1 px-3 ${
           todos.isCompleted ? "completed" : "notCompleted"
         }`}
       >
@@ -20,7 +21,7 @@ const Todo = ({ todos, completeTodo, removeTodo, setModalRemove, setRemoveTodoId
           </ul>
         </div>
 
-        <div className="buttons d-flex align-items-center gap-2">
+        <div className="buttonsCard d-flex align-items-center gap-2">
           <button
             type="button"
             className="btn complete"
