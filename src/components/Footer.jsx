@@ -10,6 +10,7 @@ const Footer = () => {
           <a
             href="https://github.com/s0d4z3r0"
             className="text-decoration-none text-footer"
+            target="_blank" rel="noreferrer"
           >
             &copy;André Falcao
           </a>
