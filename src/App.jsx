@@ -5,6 +5,7 @@ import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import Search from "./components/Search";
 import Confirm from "./components/Confirm";
+import Footer from "./components/Footer";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -61,11 +62,11 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app pb-5">
       {modalRemove ? (
         <Confirm setModalRemove={setModalRemove} removeTodoId={removeTodoId} newTodosToRemove={newTodosToRemove} setTodos={setTodos}/>
       ) : ('')}
-      <div className="todos container p-5 rounded-2 shadow-lg mb-5 w-75">
+      <div className="todos container p-5 rounded-4 shadow-lg mb-5 w-75">
         <h1 className="text-center fw-bold fs-1 mb-5">Lista de Tarefas</h1>
 
         <div className="todo-form">
@@ -93,6 +94,7 @@ function App() {
                 ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
